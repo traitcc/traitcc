@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" class="html" data-theme="dark"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>
+    
+      圆形之间的碰撞检测
+    
+  </title>
+
+  <!-- Begin Jekyll SEO tag v2.7.3 -->
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="圆形之间的碰撞检测" />
+<meta name="author" content="Poli" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="几何知识" />
+<meta property="og:description" content="几何知识" />
+<link rel="canonical" href="https://trait.cc/%E5%9C%86%E5%BD%A2%E4%B9%8B%E9%97%B4%E7%9A%84%E7%A2%B0%E6%92%9E%E6%A3%80%E6%B5%8B" />
+<meta property="og:url" content="https://trait.cc/%E5%9C%86%E5%BD%A2%E4%B9%8B%E9%97%B4%E7%9A%84%E7%A2%B0%E6%92%9E%E6%A3%80%E6%B5%8B" />
+<meta property="og:site_name" content="波力" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-06-13T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="圆形之间的碰撞检测" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","url":"https://trait.cc/%E5%9C%86%E5%BD%A2%E4%B9%8B%E9%97%B4%E7%9A%84%E7%A2%B0%E6%92%9E%E6%A3%80%E6%B5%8B","headline":"圆形之间的碰撞检测","dateModified":"2022-06-13T00:00:00+08:00","datePublished":"2022-06-13T00:00:00+08:00","author":{"@type":"Person","name":"Poli"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://trait.cc/%E5%9C%86%E5%BD%A2%E4%B9%8B%E9%97%B4%E7%9A%84%E7%A2%B0%E6%92%9E%E6%A3%80%E6%B5%8B"},"description":"几何知识","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link type="application/atom+xml" rel="alternate" href="https://trait.cc/feed.xml" title="波力" />
+
+  <link rel="shortcut icon" type="image/x-icon" href="/logo.png" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  
+  
+    <script type="text/javascript">
+  window.addEventListener('load', themeChange);
+  const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+  if (currentTheme)
+    document.documentElement.setAttribute('data-theme', currentTheme);
+
+  function themeChange() {
+    let button = document.querySelector('.theme-toggle');
+
+    button.addEventListener('click', function (e) {
+      let currentTheme = document.documentElement.getAttribute('data-theme');
+      if (currentTheme === 'dark') {
+        transition();
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+      } else {
+        transition();
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+
+    let transition = () => {
+      document.documentElement.classList.add('transition');
+      window.setTimeout(() => {
+        document.documentElement.classList.remove('transition');
+      }, 1000);
+    }
+  }
+</script>
+
+
+  
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FSJKM06NQ4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FSJKM06NQ4');
+</script>
+
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.0/katex.min.css" integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC" crossorigin="anonymous">
+<script defer src="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.0/katex.min.js" integrity="sha384-X/XCfMm41VSsqRNQgDerQczD69XqmjOOOwYQvr/uuC+j4OPoNhVgjdGFwhvN02Ja" crossorigin="anonymous"></script>
+<script defer src="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.0/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script></head>
+<body>
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <a href="/">返回</a>
+<h1 class="post-title">圆形之间的碰撞检测</h1>
+<p class="post-date text-bold text-upcase">
+  
+  
+    <span>13 Jun 2022</span>
+  
+</p>
+<h4 id="几何知识">几何知识</h4>
+<p><img src="https://trait.cc/assets/images/circle-export.svg" alt="svg" /></p>
+
+<p>设两圆的圆心分别为（x1，y1）和（x2，y2），半径分别为 R 和 r，圆心距为 D，如果发生碰撞，则 D &lt; R + r; <br />
+圆心距 D 可以通过勾定理求得，如下所示:<br />
+\(D = \sqrt{(x2 - x1)^2 + (y2 - y1)^2}\)</p>
+
+<h4 id="javascript代码实现">javascript代码实现</h4>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 圆1</span>
+<span class="kd">const</span> <span class="nx">circle1</span> <span class="o">=</span> <span class="p">{</span><span class="na">x</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="na">r</span><span class="p">:</span> <span class="mi">20</span><span class="p">};</span>
+<span class="c1">// 圆2</span>
+<span class="kd">const</span> <span class="nx">circle2</span> <span class="o">=</span> <span class="p">{</span><span class="na">x</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="na">r</span><span class="p">:</span> <span class="mi">12</span><span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">dx</span> <span class="o">=</span> <span class="nx">circle2</span><span class="p">.</span><span class="nx">x</span> <span class="o">-</span> <span class="nx">circle1</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">dy</span> <span class="o">=</span> <span class="nx">circle2</span><span class="p">.</span><span class="nx">y</span> <span class="o">-</span> <span class="nx">circle1</span><span class="p">.</span><span class="nx">y</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">distance</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">sqrt</span><span class="p">(</span><span class="nx">dx</span> <span class="o">*</span> <span class="nx">dx</span> <span class="o">+</span> <span class="nx">dy</span> <span class="o">*</span> <span class="nx">dy</span><span class="p">);</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nx">distance</span> <span class="o">&lt;</span> <span class="nx">circle1</span><span class="p">.</span><span class="nx">r</span> <span class="o">+</span> <span class="nx">circle2</span><span class="p">.</span><span class="nx">r</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 发生碰撞</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="优化版">优化版</h3>
+<p>当大量检测碰撞时，开平方根的性能肯定不好</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 圆1</span>
+<span class="kd">const</span> <span class="nx">circle1</span> <span class="o">=</span> <span class="p">{</span><span class="na">x</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="na">r</span><span class="p">:</span> <span class="mi">20</span><span class="p">};</span>
+<span class="c1">// 圆2</span>
+<span class="kd">const</span> <span class="nx">circle2</span> <span class="o">=</span> <span class="p">{</span><span class="na">x</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="na">r</span><span class="p">:</span> <span class="mi">12</span><span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">dx</span> <span class="o">=</span> <span class="nx">circle2</span><span class="p">.</span><span class="nx">x</span> <span class="o">-</span> <span class="nx">circle1</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">dy</span> <span class="o">=</span> <span class="nx">circle2</span><span class="p">.</span><span class="nx">y</span> <span class="o">-</span> <span class="nx">circle1</span><span class="p">.</span><span class="nx">y</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">distanceSQ</span> <span class="o">=</span> <span class="nx">dx</span> <span class="o">*</span> <span class="nx">dx</span> <span class="o">+</span> <span class="nx">dy</span> <span class="o">*</span> <span class="nx">dy</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">d</span> <span class="o">=</span> <span class="nx">circle1</span><span class="p">.</span><span class="nx">r</span> <span class="o">+</span> <span class="nx">circle2</span><span class="p">.</span><span class="nx">r</span><span class="p">;</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nx">distanceSQ</span> <span class="o">&lt;</span> <span class="nx">d</span> <span class="o">*</span> <span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 发生碰撞</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+        
+          <button title="Toggle Theme" class="theme-toggle">
+  <svg viewBox="0 0 32 32" width="24" height="24" fill="currentcolor">
+    <circle cx="16" cy="16" r="14" fill="none" stroke="currentcolor" stroke-width="4"></circle>
+    <path d="
+             M 16 0
+             A 16 16 0 0 0 16 32
+             z">
+    </path>
+  </svg>
+</button>
+
+        
+        <div class="credits">&copy;&nbsp;2022&nbsp;Poli
+          &nbsp;
+          •
+          &nbsp;Theme&nbsp; <a href="https://github.com/abhinavs/moonwalk" target="_blank" rel="noreferrer">Moonwalk</a>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
